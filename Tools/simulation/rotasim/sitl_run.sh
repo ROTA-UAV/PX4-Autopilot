@@ -35,13 +35,10 @@ pushd "$rootfs" >/dev/null
 # Do not exit on failure now from here on because we want the complete cleanup
 set +e
 
-sitl_command="\"$sitl_bin\" \"$build_path\"/etc"
+sitl_command="\"$sitl_bin\" \"$build_path\"/etc -i $instance_num"
 
 echo SITL COMMAND: $sitl_command
 
 eval $sitl_command
 
 popd >/dev/null
-
-# kill $FG_BRIDGE_PID
-kill -9 $(cat /tmp/px4fgfspid_0)
